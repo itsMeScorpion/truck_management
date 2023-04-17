@@ -1,0 +1,70 @@
+{
+  "development": {
+    "database": {
+      "username": "postgres",
+      "password": "postgres",
+      "database": "TruckManagement",
+      "dialect": "postgres",
+      "port": 5432,
+      "logging": false
+    },
+    "stripe": {
+      "publishable_key": "pk_test_51MqWKpSCTolr09mFuARzLf2VKtT7T8ZuQSP3pcp7xWgyTABOkiNvY3oR8HN768KJCNnjOYtSr4q3rQwXdassGE5G00VKlLN6jd",
+      "secret_key": "sk_test_51MqWKpSCTolr09mFhhIuTzK9VWYxDV55pXedTCIRp3HnOFJgQ9oyLWp8kJnuGtvaV9ht2efy6noESg79sYNt3FLi00Qj1oPuZP"
+    },
+    "jwts": {
+      "secret_key": "secret_key"
+    },
+    "mail": {
+      "host": "smtp.gmail.com",
+      "service": "gmail",
+      "email": "veena@spericorn.com",
+      "password": "Ammu@3633"
+    },
+    "docusign": {
+      "integrationKey": "b9e35c44-983e-4586-9e01-425cb39e90d4",
+      "basePath": "https://demo.docusign.net/restapi",
+      "userId": "576ad02e-edb8-4cab-b193-8318c6f557f1",
+      "accountId": "391596a1-46d0-4a88-9740-15a112143510",
+      "templateId": "8895612f-2c6c-4a39-a967-841c59ac106e",
+      "clientUserId": "2000"
+    },
+    "AESencryption": {
+      "AES_KEY": "mysecretkey123"
+    }
+  },
+  "local": {
+    "database": {
+      "username": "postgres",
+      "password": "postgres",
+      "database": "TruckManagement",
+      "dialect": "postgres",
+      "port": 5432,
+      "logging": false
+    },
+    "stripe": {
+      "publishable_key": "pk_test_51MqWKpSCTolr09mFuARzLf2VKtT7T8ZuQSP3pcp7xWgyTABOkiNvY3oR8HN768KJCNnjOYtSr4q3rQwXdassGE5G00VKlLN6jd",
+      "secret_key": "sk_test_51MqWKpSCTolr09mFhhIuTzK9VWYxDV55pXedTCIRp3HnOFJgQ9oyLWp8kJnuGtvaV9ht2efy6noESg79sYNt3FLi00Qj1oPuZP"
+    },
+    "jwts": {
+      "secret_key": "secret_key"
+    },
+    "mail": {
+      "host": "smtp.gmail.com",
+      "service": "gmail",
+      "email": "veena@spericorn.com",
+      "password": "Ammu@3633"
+    },
+    "docusign": {
+      "integrationKey": "b9e35c44-983e-4586-9e01-425cb39e90d4",
+      "basePath": "https://demo.docusign.net/restapi",
+      "userId": "576ad02e-edb8-4cab-b193-8318c6f557f1",
+      "accountId": "391596a1-46d0-4a88-9740-15a112143510",
+      "templateId": "8895612f-2c6c-4a39-a967-841c59ac106e",
+      "clientUserId": "2000"
+    },
+    "AESencryption": {
+      "AES_KEY": "mysecretkey123"
+    }
+  }
+}

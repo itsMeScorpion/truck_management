@@ -32,7 +32,6 @@ function Login() {
                     Password
                   </label>
                 </div>
-
                 <div class="row mb-4">
                   <div class="col d-flex justify-content-center">
                     <div class="form-check">
