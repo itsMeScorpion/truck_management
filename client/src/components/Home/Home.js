@@ -50,6 +50,47 @@ function Home() {
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <div className="services">
+        <h2 className="services-heading">Our Services</h2>
+        <div className="services-grid">
+          <div className="service-item">
+            <img
+              src={require('../../Images/transportation.jpeg')}
+              alt="Transportation"
+              className="service-image"
+            />
+            <h3 className="service-title">Transportation</h3>
+            <p className="service-description">
+              We offer reliable and efficient transportation services for all
+              types of cargo, including heavy haul and oversize loads.
+            </p>
+          </div>
+          <div className="service-item">
+            <img
+              src={require('../../Images/logistics.jpeg')}
+              alt="Logistics"
+              className="service-image"
+            />
+            <h3 className="service-title">Logistics</h3>
+            <p className="service-description">
+              Our logistics services include freight management, supply chain
+              optimization, and inventory management.
+            </p>
+          </div>
+          <div className="service-item">
+            <img
+              src={require('../../Images/storage.jpg')}
+              alt="Storage"
+              className="service-image"
+            />
+            <h3 className="service-title">Storage</h3>
+            <p className="service-description">
+              We offer secure and affordable storage solutions for all types of
+              cargo, including hazardous materials and refrigerated goods.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

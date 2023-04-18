@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
       <Link class="navbar-brand" to="/">
         <img
           src="https://w7.pngwing.com/pngs/575/280/png-transparent-car-gps-navigation-systems-vehicle-tracking-system-fleet-management-fleet-vehicle-car-truck-logo-vehicle-thumbnail.png"
@@ -34,24 +34,26 @@ function Header() {
               class="nav-link"
               style={{ textDecoration: 'none', marginRight: '30px' }}
             >
-              Gallery <span class="sr-only">(current)</span>
+              Gallery
             </Link>
           </li>
           <li
             class="nav-item"
-            to="/contact-us"
             style={{ textDecoration: 'none', marginRight: '30px' }}
           >
-            <Link class="nav-link">Contact Us</Link>
+            <Link class="nav-link" to="/contact-us">
+              Contact Us
+            </Link>
           </li>
           <li class="nav-item">
-            <Link
-              to="/auth/login"
+            <a
+              href="http://localhost:3001/auth/login"
+              target="blank"
               style={{ textDecoration: 'none' }}
               class="nav-link"
             >
-              Login
-            </Link>
+              Login/Sign Up
+            </a>
           </li>
         </ul>
       </div>

@@ -18,7 +18,7 @@ function Header() {
         </Link>
         <div>
           <Link to="/auth/login" style={{ textDecoration: 'none' }}>
-            Login
+            Sign Up
           </Link>
         </div>
       </div>
