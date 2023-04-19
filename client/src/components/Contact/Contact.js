@@ -10,8 +10,7 @@ const Contact = () => {
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission here
     console.log(values);
-    debugger;
-    dispatch(addData(values));
+    dispatch(addData(values, dispatch));
     // resetForm();
   };
 

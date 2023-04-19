@@ -1,5 +1,39 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+import {
+  GoogleOAuthProvider,
+  GoogleLogin,
+  googleLogout,
+} from '@react-oauth/google';
+import axios from 'axios';
+
 function Login() {
+  const initialValues = {
+    email: '',
+    password: '',
+    rememberMe: true,
+  };
+
+  async function verifyGoogleAccessToken(access_token) {
+    const url = `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${access_token}`;
+    const response = await axios.get(url);
+    const data = response;
+    console.log(data);
+    console.log('access_token', access_token);
+  }
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  const onSubmit = (values, { setSubmitting }) => {
+    console.log(values);
+    setSubmitting(false);
+  };
+
   return (
     <div className="container mt-5 mr-5">
       <div class="card">
@@ -13,50 +47,99 @@ function Login() {
           </div>
           <div class="col-lg-8">
             <div class="card-body py-5 px-md-5">
-              <form>
-                <label class="form-label" for="form2Example1">
-                  Email address
-                </label>
-                <div class="form-outline mb-4">
-                  <input type="email" id="form2Example1" class="form-control" />
-                </div>
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form2Example2">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    id="form2Example2"
-                    class="form-control"
-                  />
-                </div>
-                <div class="row mb-4">
-                  <div class="col d-flex justify-content-center">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="form2Example31"
-                        checked
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
+              >
+                {({ isSubmitting }) => (
+                  <Form>
+                    <label className="form-label" htmlFor="email">
+                      Email address
+                    </label>
+                    <div className="form-outline mb-4">
+                      <Field
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="form-control"
                       />
-                      <label class="form-check-label" for="form2Example31">
-                        {' '}
-                        Remember me{' '}
-                      </label>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-danger"
+                      />
                     </div>
-                  </div>
-
-                  <div class="col">
-                    <a href="#!">Forgot password?</a>
-                  </div>
-                </div>
-
-                <button type="button" class="btn btn-primary btn-block mb-4">
-                  Sign in
-                </button>
-              </form>
+                    <div className="form-outline mb-4">
+                      <label className="form-label" htmlFor="password">
+                        Password
+                      </label>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        className="form-control"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+                    <div className="row mb-4">
+                      <div className="col d-flex justify-content-center">
+                        <div className="form-check">
+                          <Field
+                            type="checkbox"
+                            id="rememberMe"
+                            name="rememberMe"
+                            className="form-check-input"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="rememberMe"
+                          >
+                            Remember me
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col">
+                        <a href="#!">Forgot password?</a>
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-block mb-4"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Signing in...' : 'Sign in'}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
             </div>
+          </div>
+          <div
+            className="mb-3"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <GoogleOAuthProvider clientId="764775648050-i39q47igrrc0e2c3obcrdm14f62lgl0t.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  verifyGoogleAccessToken(credentialResponse.credential);
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+                // useOneTap
+              />
+              {/* <button className="btn btn-danger" onClick={googleLogout}>
+              Logout
+            </button> */}
+            </GoogleOAuthProvider>
           </div>
         </div>
       </div>
