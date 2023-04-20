@@ -28,11 +28,16 @@ const login = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
+    access_token: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     timestamps: true,
   }
 );
+
 login.validatePassword = function (pass) {
   return /^(?=.*\d).{8,}$/.test(pass);
 };

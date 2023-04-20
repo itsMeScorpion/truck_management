@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -8,8 +9,10 @@ import {
   googleLogout,
 } from '@react-oauth/google';
 import axios from 'axios';
+import { addData } from './action';
 
 function Login() {
+  const dispatch = useDispatch();
   const initialValues = {
     email: '',
     password: '',
@@ -22,6 +25,12 @@ function Login() {
     const data = response;
     console.log(data);
     console.log('access_token', access_token);
+    dispatch(
+      addData({
+        data: data,
+        access_token: access_token,
+      })
+    );
   }
 
   const validationSchema = Yup.object().shape({

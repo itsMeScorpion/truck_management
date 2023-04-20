@@ -13,9 +13,9 @@ const hashing = async (password) => {
     let { salt, newPassword } = await hashing('Admin123');
 
     const adminData = {
-      name: 'Admin123',
-      email: 'admin@gmail.com',
-      phoneNumber: '+91 1234567890',
+      name: 'Asvin',
+      email: 'asvin@spericorn.com',
+      phoneNumber: '1234567890',
     };
 
     const designationDetails = await designation.findOne({
