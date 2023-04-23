@@ -4,9 +4,9 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 
 function Sidebar() {
   return (
-    <div>
+    <div style={{ background: 'black' }}>
       <div
-        class="header text-white"
+        class="header text-white container-fluid"
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -23,11 +23,13 @@ function Sidebar() {
       </label>
       <div id="sidebarMenu">
         <ul class="sidebarMenuInner">
-          {/* <li>
-            Admin <span>Web Developer</span>
-          </li> */}
           <li>
-            <Link to="/">Dashboard</Link>
+            Admin <span>Web Developer</span>
+          </li>
+          <li>
+            <Link to="/" class="nav-link">
+              Dashboard
+            </Link>
           </li>
           <li>
             <Link to="/">Driver</Link>
@@ -59,4 +61,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+// export default Sidebar;
