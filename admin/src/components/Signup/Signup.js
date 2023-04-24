@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import './SIgnUpPage.css';
+import './SignUpPage.css';
 
 const SignUpPage = () => {
   const [activeSection, setActiveSection] = useState(1);
