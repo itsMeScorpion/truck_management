@@ -9,7 +9,7 @@ import {
   googleLogout,
 } from '@react-oauth/google';
 import axios from 'axios';
-import { addData } from './action';
+import { addData, login } from './action';
 
 function Login() {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ function Login() {
     password: '',
     rememberMe: true,
   };
-
   async function verifyGoogleAccessToken(access_token) {
     const url = `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${access_token}`;
     const response = await axios.get(url);
@@ -41,6 +40,7 @@ function Login() {
   const onSubmit = (values, { setSubmitting }) => {
     console.log(values);
     setSubmitting(false);
+    dispatch(login(values));
   };
 
   return (

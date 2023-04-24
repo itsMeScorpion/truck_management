@@ -9,8 +9,17 @@ import Sidebar from './Sidebar/Sidebar';
 import Gallery from './Gallery/Gallery';
 import Permission from './Permission/Permission';
 import Signup from './Signup/Signup';
+import { useEffect } from 'react';
 
-function App() {
+const App = () => {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+
+  useEffect(() => {
+    if (!token) {
+      History.push('/auth/login');
+    }
+  });
   return (
     <div className="App">
       {/* <Sidebar /> */}
@@ -27,6 +36,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

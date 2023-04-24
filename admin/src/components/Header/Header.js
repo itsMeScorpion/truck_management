@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import history from '../../Routes/History';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from './action';
 
 function Header() {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   // console.log('token', token);
-  useEffect(() => {
-    if (!token) {
-      history.push('/auth/login');
-    }
-  });
+  const dispatch = useDispatch();
+  // const { isLogin } = useSelector((e) => e.loginReducer);
+  // console.log('isLogin', isLogin);
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <Link class="navbar-brand" href="#">
@@ -122,7 +122,9 @@ function Header() {
                 <Link to="/profile" class="nav-link">
                   Profile
                 </Link>
-                <button class="nav-link">Logout</button>
+                <button class="nav-link" onClick={() => dispatch(logout())}>
+                  Logout
+                </button>
               </div>
             </li>
           </ul>

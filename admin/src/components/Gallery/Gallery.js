@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { addData } from './action';
+import { addData, listData } from './action';
 
 const GalleryWrapper = styled.div`
   display: flex;
@@ -71,6 +71,7 @@ function Gallery() {
   const [showImageViewer, setShowImageViewer] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 
   function handleImageUpload(event) {
@@ -79,7 +80,10 @@ function Gallery() {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImages([...images, reader.result]);
-      dispatch(addData(images));
+      const formData = new FormData();
+      formData.append('image', fileInputRef.current.files[0]);
+      console.log('formdata', fileInputRef.current.files[0]);
+      dispatch(addData(formData));
     };
   }
 
@@ -94,6 +98,13 @@ function Gallery() {
     setShowImageViewer(false);
   }
 
+  useEffect(() => {
+    dispatch(listData());
+  }, []);
+
+  const { gallery } = useSelector((e) => e.galleryReducer);
+
+  // console.log('gallery', gallery);
   return (
     <div className="container mt-5">
       <button
@@ -108,12 +119,13 @@ function Gallery() {
         accept="image/*"
         onChange={handleImageUpload}
         style={{ display: 'none' }}
+        ref={fileInputRef}
       />
       <GalleryWrapper>
-        {images.map((image, index) => (
+        {gallery?.map((image, index) => (
           <GalleryImage
             key={index}
-            src={image}
+            src={`http://localhost:5000/${image.image?.slice(6)}`}
             alt={`Image ${index}`}
             onClick={() => handleImageClick(image)}
           />
@@ -122,7 +134,10 @@ function Gallery() {
       {showImageViewer && (
         <ImageViewerWrapper onClick={() => setShowImageViewer(false)}>
           <ImageViewer>
-            <ImageViewerImage src={selectedImage} alt="Viewer Image" />
+            <ImageViewerImage
+              src={`http://localhost:5000/${selectedImage.image?.slice(6)}`}
+              alt="Viewer Image"
+            />
             <DeleteButton onClick={() => handleDeleteImage(selectedImage)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
