@@ -16,7 +16,6 @@ export const addData = (data) => async (dispatch) => {
         alert(e.data.message);
         dispatch({
           type: 'IS_LOGIN',
-          payload: true,
         });
         history.push('/dashboard');
       } else {

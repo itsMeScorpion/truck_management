@@ -10,7 +10,7 @@ function Header() {
   const role = localStorage.getItem('role');
   // console.log('token', token);
   const dispatch = useDispatch();
-  // const { isLogin } = useSelector((e) => e.loginReducer);
+  const { isLogin } = useSelector((e) => e.loginReducer);
   // console.log('isLogin', isLogin);
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +35,7 @@ function Header() {
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      {token ? (
+      {isLogin ? (
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item active">

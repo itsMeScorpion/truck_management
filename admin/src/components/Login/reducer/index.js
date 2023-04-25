@@ -1,5 +1,5 @@
 const initailState = {
-  isLogin: false,
+  isLogin: localStorage.getItem('token') ? localStorage.getItem('token') : null,
 };
 
 const loginReducer = (state = initailState, action) => {
@@ -7,7 +7,9 @@ const loginReducer = (state = initailState, action) => {
     case 'IS_LOGIN':
       return {
         ...state,
-        isLogin: action.payload,
+        isLogin: localStorage.getItem('token')
+          ? localStorage.getItem('token')
+          : null,
       };
     case 'IS_LOGOUT':
       return {
